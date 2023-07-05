@@ -37,6 +37,13 @@ class TestBaseModel(unittest.TestCase):
         new_dict = b1.to_dict()
         self.assertIsInstance(new_dict, dict)
 
+    def test_to_dict_contains_all_attributes(self):
+        b1 = BaseModel()
+        result = b1.to_dict()
+        self.assertIn("id", result)
+        self.assertIn("created_at", result)
+        self.assertIn("updated_at", result)
+
 
 if __name__ == "__main__":
     unittest.main()
