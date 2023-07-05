@@ -12,8 +12,18 @@ class TestBaseModel(unittest.TestCase):
     def test_create_class(self):
         b1 = BaseModel()
         self.assertIsInstance(b1, BaseModel)
+
+    def test_id_instance(self):
+        b1 = BaseModel()
         self.assertIsInstance(b1.id, str)
+
+    def test_created_at_instance(self):
+        b1 = BaseModel()
         self.assertIsInstance(b1.created_at, datetime)
+
+    def test_updated_at_instance(self):
+        b1 = BaseModel()
+        self.assertIsInstance(b1.updated_at, datetime)
 
     def test_save(self):
         b1 = BaseModel()
