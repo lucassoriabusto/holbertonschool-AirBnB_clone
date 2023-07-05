@@ -44,6 +44,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("created_at", result)
         self.assertIn("updated_at", result)
 
+    def test_str(self):
+        b1 = BaseModel()
+        str_rep = str(b1)
+        self.assertIn(b1.__class__.__name__, str_rep)
+        self.assertIn(b1.id, str_rep)
+
 
 if __name__ == "__main__":
     unittest.main()
