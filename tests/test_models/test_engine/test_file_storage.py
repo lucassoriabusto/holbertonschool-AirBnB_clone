@@ -46,10 +46,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_file_is_str(self):
-        self.assertAlmostEqual(type(self.storage._FileStorage__objects), dict)
+        self.assertIsInstance(self.storage._FileStorage__objects, dict)
 
     def test_storage_contais_dict(self):
-        self.assertAlmostEqual(type(self.storage._FileStorage__file_path), str)
+        self.assertIsInstance(self.storage._FileStorage__file_path, str)
 
     def test_file_path(self):
         self.assertAlmostEqual(
