@@ -45,10 +45,11 @@ class TestBaseModel(unittest.TestCase):
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertAlmostEqual(key in self.storage.all(), True)
 
+    def test_file_is_str(self):
+        self.assertAlmostEqual(type(self.storage._FileStorage__objects), dict)
+
     def test_storage_contais_dict(self):
-        obj = BaseModel()
-        self.storage.new(obj)
-        self.assertIsInstance(self.storage.all(), dict)
+        self.assertAlmostEqual(type(self.storage._FileStorage__file_path), str)
 
 
 if __name__ == "__main__":
