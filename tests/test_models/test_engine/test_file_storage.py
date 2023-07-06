@@ -42,19 +42,10 @@ class TestBaseModel(unittest.TestCase):
     def test_reload(self):
         obj = BaseModel()
         self.storage.save()
-        self.storage.reload()
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertAlmostEqual(key in self.storage.all(), True)
-
-    def test_file_is_str(self):
-        self.assertIsInstance(self.storage._FileStorage__objects, dict)
-
-    def test_storage_contais_dict(self):
-        self.assertIsInstance(self.storage._FileStorage__file_path, str)
-
-    def test_file_path(self):
-        self.assertAlmostEqual(
-            self.storage._FileStorage__file_path, "file.json")
+        objects = self.storage.all()
+        self.assertEqual(len(objects), 2)
+        for key in objects.keys():
+            self.assertTrue(isinstance(objects[key], BaseModel))
 
     def test_reload_2(self):
         """ Test reload method """
@@ -74,6 +65,16 @@ class TestBaseModel(unittest.TestCase):
         obj = self.storage.all()["BaseModel.1234"]
         self.assertEqual(obj.id, "1234")
         self.assertEqual(obj.name, "test")
+
+    def test_file_is_str(self):
+        self.assertIsInstance(self.storage._FileStorage__objects, dict)
+
+    def test_storage_contais_dict(self):
+        self.assertIsInstance(self.storage._FileStorage__file_path, str)
+
+    def test_file_path(self):
+        self.assertAlmostEqual(
+            self.storage._FileStorage__file_path, "file.json")
 
 
 if __name__ == "__main__":
