@@ -51,6 +51,10 @@ class TestBaseModel(unittest.TestCase):
     def test_storage_contais_dict(self):
         self.assertAlmostEqual(type(self.storage._FileStorage__file_path), str)
 
+    def test_file_path(self):
+        self.assertAlmostEqual(
+            self.storage._FileStorage__file_path, "file.json")
+
 
 if __name__ == "__main__":
     unittest.main()
