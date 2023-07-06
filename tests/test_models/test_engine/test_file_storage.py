@@ -27,6 +27,7 @@ class TestBaseModel(unittest.TestCase):
         obj = BaseModel()
         self.storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.assertAlmostEqual(len(self.storage.all()), 1)
         self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_save(self):
