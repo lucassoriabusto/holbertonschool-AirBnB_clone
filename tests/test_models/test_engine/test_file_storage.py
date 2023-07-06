@@ -23,7 +23,7 @@ class TestBaseModel(unittest.TestCase):
     def test_all(self):
         self.assertAlmostEqual(self.storage.all(), {})
 
-    def test_create_new(self):
+    def test_new(self):
         obj = BaseModel()
         self.storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
@@ -34,7 +34,7 @@ class TestBaseModel(unittest.TestCase):
         self.storage.save()
         self.assertAlmostEqual(os.path.exists(self.path), True)
         with open(self.path, mode="r") as file:
-            text = json.dumps(file.read())
+            text = json.load(file)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertAlmostEqual(key in text, True)
 
@@ -54,6 +54,25 @@ class TestBaseModel(unittest.TestCase):
     def test_file_path(self):
         self.assertAlmostEqual(
             self.storage._FileStorage__file_path, "file.json")
+
+    def test_reload_2(self):
+        """ Test reload method """
+        my_model = BaseModel()
+        self.storage.new(my_model)
+        self.storage.save()
+        with open(self.path, "r") as file:
+            data = json.load(file)
+        data["BaseModel.1234"] = {"id": "1234",
+                                  "__class__": "BaseModel", "name": "test",
+                                  "created_at": "2023-07-06T14:19:45.911051",
+                                  "updated_at": "2023-07-06T14:19:45.911061"}
+        with open(self.path, "w") as file:
+            json.dump(data, file)
+        self.storage.reload()
+        self.assertIn("BaseModel.1234", self.storage.all())
+        obj = self.storage.all()["BaseModel.1234"]
+        self.assertEqual(obj.id, "1234")
+        self.assertEqual(obj.name, "test")
 
 
 if __name__ == "__main__":
