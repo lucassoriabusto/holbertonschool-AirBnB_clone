@@ -32,7 +32,7 @@ class HBNBCommand(cmd.Cmd):
             obj = getattr(sys.modules[__name__], args)()
             print(obj.id)
             obj.save()
-        except:
+        except Exception:
             if not args:
                 print("** class name missing **")
             else:
@@ -74,7 +74,11 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         input = args.split()
         if len(input) < 1:
-            print("** class name missing **")
+            dict = models.storage.all()
+            new_list = []
+            for key, value in dict.items():
+                new_list.append(str(value))
+            print(new_list)
         elif input[0] not in self.clases:
             print("** class doesn't exist **")
         else:
