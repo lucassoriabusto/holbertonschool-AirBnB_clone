@@ -6,7 +6,6 @@ from models.base_model import BaseModel
 from models.user import User
 
 
-
 class FileStorage:
     """CC"""
     __file_path = "file.json"
@@ -37,6 +36,6 @@ class FileStorage:
                     if class_name == "User":
                         value = User(**value)
                         self.__objects[key] = value
-                    else:  
+                    else:
                         value = BaseModel(**value)
                         self.__objects[key] = value
