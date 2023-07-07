@@ -106,10 +106,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             dict = models.storage.all()
             key = input[0] + "." + input[1]
-            obj = dict[key]
-            if input[2] in obj.__dict__:
-                obj.__dict__[input[2]] = eval(input[3])
-                obj.save()
+            for k, v in dict.items():
+                if key == k:
+                    v.__dict__[input[2]] = eval(input[3])
+                    v.save()
 
 
 if __name__ == '__main__':
