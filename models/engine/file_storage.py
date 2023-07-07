@@ -3,6 +3,8 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
+
 
 
 class FileStorage:
@@ -31,5 +33,10 @@ class FileStorage:
         if os.path.exists(self.__file_path):
             with open(self.__file_path, mode="r") as file:
                 for key, value in (json.loads(file.read())).items():
-                    value = BaseModel(**value)
-                    self.__objects[key] = value
+                    class_name = key.split(".")[0]
+                    if class_name == "User":
+                        value = User(**value)
+                        self.__objects[key] = value
+                    else:  
+                        value = BaseModel(**value)
+                        self.__objects[key] = value
