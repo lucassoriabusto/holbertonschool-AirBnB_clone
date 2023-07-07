@@ -5,12 +5,13 @@
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    clases = ["BaseModel"]
+    clases = ["BaseModel", "User"]
 
     def do_quit(self, args):
         """Quit command to exit the program"""
