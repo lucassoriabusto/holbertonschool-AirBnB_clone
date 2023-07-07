@@ -42,10 +42,9 @@ class TestBaseModel(unittest.TestCase):
     def test_reload(self):
         obj = BaseModel()
         self.storage.save()
-        objects = self.storage.all()
-        self.assertEqual(len(objects), 2)
-        for key in objects.keys():
-            self.assertTrue(isinstance(objects[key], BaseModel))
+        self.storage.reload()
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_reload_2(self):
         """ Test reload method """
