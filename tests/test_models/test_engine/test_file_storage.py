@@ -1,36 +1,40 @@
 #!/usr/bin/python3
 """
-Unittest for BaseModel class
+Unittest for FileStorage class
 """
 import unittest
 import os
 import json
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-from datetime import datetime
 
 
-class TestBaseModel(unittest.TestCase):
-
+class TestFileStorage(unittest.TestCase):
+    """ tests for the FileStorage class """
     def setUp(self) -> None:
+        """ setup method """
         self.storage = FileStorage()
         self.path = "file.json"
 
     def tearDown(self) -> None:
+        """ teardown method """
         if os.path.exists(self.path):
             os.remove(self.path)
 
     def test_all(self):
+        """ test all method """
         self.assertAlmostEqual(self.storage.all(), {})
         self.assertIsInstance(self.storage.all(), dict)
 
     def test_new(self):
+        """ test new method """
         obj = BaseModel()
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertAlmostEqual(len(self.storage.all()), 1)
         self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_save(self):
+        """ test save method """
         obj = BaseModel()
         self.storage.save()
         self.assertAlmostEqual(os.path.exists(self.path), True)
@@ -40,6 +44,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(key, text)
 
     def test_reload(self):
+        """ test reload method V1"""
         obj = BaseModel()
         self.storage.save()
         dict = self.storage.all()
@@ -48,7 +53,7 @@ class TestBaseModel(unittest.TestCase):
             self.assertTrue(isinstance(dict[key], BaseModel))
 
     def test_reload_2(self):
-        """ Test reload method """
+        """ test reload method V2 """
         my_model = BaseModel()
         self.storage.new(my_model)
         self.storage.save()
@@ -66,13 +71,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(obj.id, "1234")
         self.assertEqual(obj.name, "test")
 
-    def test_file_is_dict(self):
+    def test_obj_is_dict(self):
+        """ test to check if the obj is a dict"""
         self.assertAlmostEqual(type(self.storage._FileStorage__objects), dict)
 
-    def test_storage_contais_str(self):
+    def test_path_contais_str(self):
+        """ test to check if the path is a str"""
         self.assertAlmostEqual(type(self.storage._FileStorage__file_path), str)
 
     def test_file_path(self):
+        """ test to check if the file path is correct"""
         self.assertAlmostEqual(
             self.storage._FileStorage__file_path, "file.json")
 
