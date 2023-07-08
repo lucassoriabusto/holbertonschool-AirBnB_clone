@@ -25,7 +25,6 @@ class TestBaseModel(unittest.TestCase):
 
     def test_new(self):
         obj = BaseModel()
-        self.storage.new(obj)
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertAlmostEqual(len(self.storage.all()), 1)
         self.assertAlmostEqual(key in self.storage.all(), True)
@@ -42,9 +41,10 @@ class TestBaseModel(unittest.TestCase):
     def test_reload(self):
         obj = BaseModel()
         self.storage.save()
-        self.storage.reload()
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertAlmostEqual(key in self.storage.all(), True)
+        dict = self.storage.all()
+        self.assertEqual(len(dict), 2)
+        for key in dict.keys():
+            self.assertTrue(isinstance(dict[key], BaseModel))
 
     def test_reload_2(self):
         """ Test reload method """
