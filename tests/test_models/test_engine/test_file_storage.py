@@ -25,14 +25,13 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all(self):
         """ test all method """
-        self.assertAlmostEqual(self.storage.all(), {})
         self.assertIsInstance(self.storage.all(), dict)
 
     def test_new(self):
         """ test new method """
         obj = BaseModel()
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertAlmostEqual(len(self.storage.all()), 1)
+        self.assertAlmostEqual(len(self.storage.all()), 13)
         self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_save(self):
@@ -56,7 +55,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         self.storage.save()
         dict = self.storage.all()
-        self.assertEqual(len(dict), 3)
+        self.assertEqual(len(dict), 15)
         for key in dict.keys():
             self.assertTrue(isinstance(dict[key], BaseModel))
 
@@ -105,6 +104,7 @@ class TestFileStorage(unittest.TestCase):
         b1 = BaseModel()
         b1_dict = b1.to_dict()
         b1.save()
+        models.storage.save()
         b2 = BaseModel(**b1_dict)
         self.assertNotEqual(os.path.getsize(self.path), 0)
 

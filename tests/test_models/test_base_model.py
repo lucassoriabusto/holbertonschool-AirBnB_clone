@@ -4,6 +4,7 @@ Unittest for BaseModel class
 """
 import unittest
 from models.base_model import BaseModel
+import models
 from datetime import datetime
 
 
@@ -34,9 +35,9 @@ class TestBaseModel(unittest.TestCase):
         """ Test save method """
         b1 = BaseModel()
         old_datetime = b1.updated_at
+        models.storage.save()
         b1.save()
-        new_datetime = b1.updated_at
-        self.assertNotEqual(old_datetime, new_datetime)
+        self.assertNotEqual(old_datetime, b1.updated_at)
 
     def test_to_dict(self):
         """ Test to_dict method """
