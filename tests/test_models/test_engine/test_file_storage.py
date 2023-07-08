@@ -45,19 +45,11 @@ class TestFileStorage(unittest.TestCase):
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.assertIn(key, text)
 
-    # def test_save_2(self):
-    #     """ Test save method V2"""
-    #     b1 = BaseModel()
-    #     old_datetime = b1.updated_at
-    #     self.storage.save()
-    #     with open(self.path, mode="r") as file:
-    #         text_1 = json.load(file)
-    #     b1.save()
-    #     new_datetime = b1.updated_at
-    #     with open(self.path, mode="r") as file:
-    #         text_2 = json.load(file)
-    #     self.assertNotEqual(old_datetime, new_datetime)
-    #     self.assertEqual(text_1, text_2)
+    def test_save_2(self):
+        """ Test save method V2"""
+        b1 = BaseModel()
+        b1.save()
+        self.assertTrue(os.path.exists(self.path))
 
     def test_reload(self):
         """ test reload method V1"""
