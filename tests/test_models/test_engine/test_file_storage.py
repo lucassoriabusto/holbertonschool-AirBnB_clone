@@ -36,7 +36,7 @@ class TestBaseModel(unittest.TestCase):
         with open(self.path, mode="r") as file:
             text = json.load(file)
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertAlmostEqual(key in text, True)
+        self.assertIn(key, text)
 
     def test_reload(self):
         obj = BaseModel()
