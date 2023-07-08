@@ -39,7 +39,7 @@ class TestFileStorage(unittest.TestCase):
         """ test save method V1"""
         obj = BaseModel()
         self.storage.save()
-        self.assertAlmostEqual(os.path.exists(self.path), True)
+        self.assertTrue(os.path.exists(self.path))
         with open(self.path, mode="r") as file:
             text = json.load(file)
         key = "{}.{}".format(type(obj).__name__, obj.id)
@@ -56,7 +56,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         self.storage.save()
         dict = self.storage.all()
-        self.assertEqual(len(dict), 2)
+        self.assertEqual(len(dict), 3)
         for key in dict.keys():
             self.assertTrue(isinstance(dict[key], BaseModel))
 
@@ -95,6 +95,14 @@ class TestFileStorage(unittest.TestCase):
     def test_storage_created(self):
         """ test to check if storage was created """
         self.assertAlmostEqual(type(models.storage), FileStorage)
+
+    def test_not_empty(self):
+        """ test to check json file is not empty """
+        b1 = BaseModel()
+        b1_dict = b1.to_dict()
+        b1.save()
+        b2 = BaseModel(**b1_dict)
+        self.assertNotEqual(os.path.getsize(self.path), 0)
 
 
 if __name__ == "__main__":
