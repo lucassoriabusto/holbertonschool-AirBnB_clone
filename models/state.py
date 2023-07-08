@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-"""class State"""
+""" Class State that inherits from BaseModel """
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
+    """ Class State with 1 public instance """
     name = ""
