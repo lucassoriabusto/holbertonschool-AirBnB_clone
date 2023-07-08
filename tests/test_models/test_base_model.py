@@ -33,7 +33,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(b1.updated_at, datetime)
 
     def test_save(self):
-        """ Test save method """
+        """ Test save method V1"""
+        b1 = BaseModel()
+        old_datetime = b1.updated_at
+        models.storage.save()
+        b1.save()
+        self.assertNotEqual(old_datetime, b1.updated_at)
+
+    def test_save_2(self):
+        """ Test save method V2"""
         b1 = BaseModel()
         b1.save()
         key = "BaseModel." + b1.id
