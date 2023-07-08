@@ -79,6 +79,10 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(obj.id, "1234")
         self.assertEqual(obj.name, "test")
 
+    def test_reload_nonexisting_file(self):
+        """ reloads a non created file """
+        self.assertAlmostEqual(models.storage.reload(), None)
+
     def test_obj_is_dict(self):
         """ test to check if the obj is a dict"""
         self.assertAlmostEqual(type(self.storage._FileStorage__objects), dict)
