@@ -7,14 +7,17 @@ from models.city import City
 
 
 class TestCity(unittest.TestCase):
+    """ Tests for City Class"""
 
     def test_create_class(self):
+        """ Tests if the class was created correctly """
         c1 = City()
         self.assertIsInstance(c1, City)
         self.assertTrue(hasattr(c1, "state_id"))
         self.assertTrue(hasattr(c1, "name"))
-        
+
     def test_empty_attributes(self):
+        """ Tests if the atribute its empty """
         c1 = City()
         self.assertAlmostEqual(c1.state_id, "")
         self.assertAlmostEqual(c1.name, "")

@@ -7,8 +7,10 @@ from models.place import Place
 
 
 class TestPlace(unittest.TestCase):
+    """ Tests for Place Class"""
 
     def test_create_class(self):
+        """ Tests if the class was created correctly """
         p1 = Place()
         self.assertIsInstance(p1, Place)
         self.assertTrue(hasattr(p1, "city_id"))
@@ -22,8 +24,9 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(p1, "latitude"))
         self.assertTrue(hasattr(p1, "longitude"))
         self.assertTrue(hasattr(p1, "amenity_ids"))
-        
+
     def test_empty_attributes(self):
+        """ Tests if the atribute its empty """
         p1 = Place()
         self.assertAlmostEqual(p1.city_id, "")
         self.assertAlmostEqual(p1.user_id, "")
