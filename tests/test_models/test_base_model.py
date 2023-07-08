@@ -5,6 +5,7 @@ Unittest for BaseModel class
 import unittest
 from models.base_model import BaseModel
 import models
+import json
 from datetime import datetime
 
 
@@ -34,10 +35,11 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         """ Test save method """
         b1 = BaseModel()
-        old_datetime = b1.updated_at
-        models.storage.save()
         b1.save()
-        self.assertNotEqual(old_datetime, b1.updated_at)
+        key = "BaseModel." + b1.id
+        with open("file.json", mode="r") as file:
+            text = json.load(file)
+            self.assertEqual(text[key], b1.to_dict())
 
     def test_to_dict(self):
         """ Test to_dict method """
