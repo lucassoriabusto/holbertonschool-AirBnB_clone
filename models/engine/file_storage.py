@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""c"""
+""" Class FileStorage """
 import json
 import os
 import sys
@@ -13,28 +13,28 @@ from models.state import State
 
 
 class FileStorage:
-    """CC"""
+    """ Class FileStorage """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """c"""
+        """ Function that returns al dict of all the obj"""
         return self.__objects
 
     def new(self, obj):
-        """c"""
+        """ Function that adds a new obj to the dict """
         key = "{}.{}".format(type(obj).__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
-        """ coment """
+        """ Function that saves the dict to the json file """
         new_dict = {o: self.__objects[o].to_dict()
                     for o in self.__objects.keys()}
         with open(self.__file_path, mode="w") as file:
             json.dump(new_dict, file)
 
     def reload(self):
-        """ coment """
+        """ Function that loads the dict from the json file """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, mode="r") as file:
                 for key, value in (json.loads(file.read())).items():
