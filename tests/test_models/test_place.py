@@ -4,10 +4,16 @@ Unittest for Place class
 """
 import unittest
 from models.place import Place
+import os
 
 
 class TestPlace(unittest.TestCase):
     """ Tests for Place Class"""
+
+    def tearDown(self) -> None:
+        """ teardown method """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_create_class(self):
         """ Tests if the class was created correctly """

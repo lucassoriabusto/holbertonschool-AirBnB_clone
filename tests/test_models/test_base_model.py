@@ -6,11 +6,17 @@ import unittest
 from models.base_model import BaseModel
 import models
 import json
+import os
 from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
     """ Tests for BaseModel Class"""
+
+    def tearDown(self) -> None:
+        """ teardown method """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_create_class(self):
         """ Tests if the class was created correctly """

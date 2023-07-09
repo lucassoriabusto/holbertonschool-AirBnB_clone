@@ -4,10 +4,16 @@ Unittest for City class
 """
 import unittest
 from models.city import City
+import os
 
 
 class TestCity(unittest.TestCase):
     """ Tests for City Class"""
+
+    def tearDown(self) -> None:
+        """ teardown method """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_create_class(self):
         """ Tests if the class was created correctly """

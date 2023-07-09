@@ -4,10 +4,16 @@ Unittest for Review class
 """
 import unittest
 from models.review import Review
+import os
 
 
 class TestReview(unittest.TestCase):
     """ Tests for Review Class"""
+
+    def tearDown(self) -> None:
+        """ teardown method """
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_create_class(self):
         """ Tests if the class was created correctly """
