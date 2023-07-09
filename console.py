@@ -20,21 +20,22 @@ class HBNBCommand(cmd.Cmd):
               "State", "City", "Amenity", "Review"]
 
     def do_quit(self, args):
-        """Quit command to exit the program"""
+        """ Quit command to exit the program """
         return True
 
     def do_EOF(self, args):
-        """Exits the program with EOF"""
+        """ Exits the program with EOF """
         return True
 
     def help_help(self):
-        """Show help message"""
+        """ Show help message """
 
     def emptyline(self):
-        """No action on empty line"""
+        """ No action on empty line """
         pass
 
     def do_create(self, args):
+        """ Creates an instance for the input class sent """
         try:
             obj = getattr(sys.modules[__name__], args)()
             print(obj.id)
@@ -46,6 +47,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, args):
+        """ Shows the specific instance for the given ID """
         input = args.split()
         if len(input) < 1:
             print("** class name missing **")
@@ -62,6 +64,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, args):
+        """ Destroys the specific instance for the given ID """
         input = args.split()
         if len(input) < 1:
             print("** class name missing **")
@@ -79,6 +82,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, args):
+        """ Shows all the instances or only the given one """
         input = args.split()
         if len(input) < 1:
             dict = models.storage.all()
@@ -97,6 +101,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_list)
 
     def do_update(self, args):
+        """ Updated an instance for the given id """
         input = args.split()
         if len(input) < 1:
             print("** class name missing **")
