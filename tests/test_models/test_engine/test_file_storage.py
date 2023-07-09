@@ -31,7 +31,7 @@ class TestFileStorage(unittest.TestCase):
         """ test new method """
         obj = BaseModel()
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.assertAlmostEqual(len(self.storage.all()), 14)
+        self.assertAlmostEqual(len(self.storage.all()), 21)
         self.assertAlmostEqual(key in self.storage.all(), True)
 
     def test_save(self):
@@ -55,7 +55,7 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         self.storage.save()
         dict = self.storage.all()
-        self.assertEqual(len(dict), 16)
+        self.assertEqual(len(dict), 23)
         for key in dict.keys():
             self.assertTrue(isinstance(dict[key], BaseModel))
 
