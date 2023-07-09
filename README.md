@@ -1,62 +1,168 @@
-# AirBnB clone
+# AirBnB Clone
 
-### Description
-La finalidad de este proyecto es crear un clon del sitio web AirBnB. En esta primera parte realizaremos un intérprete de comandos para manipular datos sin una interfaz visual.
+![65f4a1dd9c51265f49d0](https://github.com/Diego-Bonora/holbertonschool-AirBnB_clone/assets/44532670/47a59566-4a53-435a-9469-55a7b7e7f537)
 
-### ¿Que es un intérprete de comandos?
-Es una interfaz de usuario en la que se pueden ingresar y ejecutar comandos de texto. Proporciona una forma interactiva de interactuar con un sistema operativo o entorno informático.
+## Description
+The purpose of this project is to create a clone of the AirBnB website. In this first part we will create a command interpreter to manipulate data without a visual interface.
 
-Actuando como una capa de comunicación entre el usuario y el sistema operativo. Permite al usuario ingresar comandos de texto, que luego son interpretados y ejecutados por el sistema operativo. El resultado de la ejecución del comando se muestra en la pantalla, lo que permite al usuario ver la salida y responder en consecuencia.
+## What is a command interpreter?
+It is a user interface in which text commands can be entered and executed. It provides an interactive way to interact with an operating system or computer environment.
 
-Similar a una Shell o Terminal, nuestro Intérprete puede reconocer una serie de comandos.
+Acting as a communication layer between the user and the operating system. It allows the user to enter text commands, which are then interpreted and executed by the operating system. The result of the command execution is displayed on the screen, allowing the user to see the output and respond accordingly.
 
-
-### Nuestro intérprete está conformado por:
-
-**base_model.py:**  Contiene BaseModel es una clase base que define atributos y métodos comunes para otras clases. Sirve como una plantilla que otras clases pueden heredar para obtener funcionalidades comunes.
+Similar to a Shell or Terminal, our Interpreter can recognize a series of commands.
 
 
-**file_storage.py**: Se encarga de administrar la serialización y deserialización de objetos utilizando un archivo JSON. Sirve como un mecanismo de almacenamiento para guardar y recuperar objetos de forma constante
+## Our interpreter consists of:
 
-**console.py:** Implementa un intérprete de comandos que proporciona una interfaz para interactuar con las clases y objetos del programa, permitiendo al usuario crear, mostrar, actualizar o eliminar objetos utilizando los comandos proporcionados.
-
-### Cómo iniciar el intérprete de comandos?
-
-Descargar nuestro intérprete: ``git clone https://github.com/Diego-Bonora/holbertonschool-AirBnB_clone.git``
-
-Para ejecutar la consola se debe usar el comando ``./console.py``
-Mostrando un prompt ``(hbnb)`` donde ingresar los comandos.
+**base_model.py:** It contains BaseModel is a base class that defines common attributes and methods for other classes. It serves as a template that other classes can inherit to obtain common functionality.
 
 
-### ¿Cómo usar?
+**file_storage.py**: It is in charge of managing the serialization and deserialization of objects using a JSON file. It serves as a storage mechanism to store and retrieve objects constantly.
+
+**console.py:** Implements a command interpreter that provides an interface to interact with the classes and objects of the program, allowing the user to create, display, update or delete objects using the provided commands.
+
+### Subclasses
+Update, State, City, Amenity, Place and Review.
+
+## How to start the command interpreter?
+
+Download our interpreter: ``git clone https://github.com/Diego-Bonora/holbertonschool-AirBnB_clone.git``
+
+To run the console you must use the command ``./console.py``.
+Showing a prompt ``(hbnb)`` donde ingresar los comandos.
+
+### Interactive mode
+
+<pre>
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb) 
+(hbnb) 
+(hbnb) quit
+$
+</pre>
+
+### Non-interactive mode
+
+<pre>
+  $ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb) 
+$
+</pre>
+
+
+## How to use?
 
 ### Commands
 
 | Name | Function |
 | --- | --- |
-| quit | insertar comentario |
-| help | insertar comentario |
-| create | insertar comentario |
-| show | insertar comentario |
-| destroy | insertar comentario |
-| all | insertar comentario |
-| update | insertar comentario |
+| **quit** | Exit the program or end the execution of the command interpreter. |
+| **help** | Displays a help message that provides information on how to use the shell and the available commands. |
+| **create** | Creates a new instance of a specified class and saves it. |
+| **show** | Displays the details of a specified instance using the class name and its id. | | **destroy** | Elsewhere, the class name and id are displayed.
+| **destroy** | Deletes a specified instance using the class name and id. | |
+| **all** | Displays all instances of a specific class or all instances of all classes, as specified. |
+| **update** | Updates the attributes of a specific instance. |
 
 
-``quit:``
+### How to use
 
-``help:``
-
-``create:``
-
-``show:``
-
-``destroy:``
-
-``all:``
-
-``update:``
+| Commands | Use |
+| --- | --- |
+| **quit** | quit \<none> |
+| **help** | help \<none> or \<command-name> |
+| **create** | create \<class-name> |
+| **show** | show \<class-name> \<id> |
+| **destroy**| destroy \<class-name> \<id> |
+| **all**| all \<none> or \<class-name> |
+| **update**| update \<class-name> \<id> \<attribute-name> \<attribute-value> |
 
 
 
-### Ejemplos
+## Ejemplos
+
+### Create
+<pre>
+(hbnb) create User
+e5bc51b6-e31d-4304-b4e2-046e9a337fad
+</pre>
+
+### Show
+<pre>
+(hbnb) show User e5bc51b6-e31d-4304-b4e2-046e9a337fad
+[User] (e5bc51b6-e31d-4304-b4e2-046e9a337fad) {'id': 'e5bc51b6-e31d-4304-b4e2-046e9a337fad', 'created_at': datetime.datetime(2023, 7, 9, 13, 19, 36, 291509), 'updated_at': datetime.datetime(2023, 7, 9, 13, 19, 36, 291560)}
+</pre>
+
+### Destroy
+<pre>
+(hbnb) destroy User e5bc51b6-e31d-4304-b4e2-046e9a337fad
+</pre>
+
+### All
+<pre>
+(hbnb) all User
+["[User] (e5bc51b6-e31d-4304-b4e2-046e9a337fad) {'id': 'e5bc51b6-e31d-4304-b4e2-046e9a337fad', 'created_at': datetime.datetime(2023, 7, 9, 13, 19, 36, 291509), 'updated_at': datetime.datetime(2023, 7, 9, 13, 19, 36, 291560)}"]
+</pre>
+
+### Update
+<pre>
+(hbnb) update User e5bc51b6-e31d-4304-b4e2-046e9a337fad Name "Pepe"
+</pre>
+
+### Testing
+
+All the files, classes and functions are tested with unitests
+
+### Interactive mode
+
+<pre>
+$ python3 -m unittest discover tests
+...................................................................................
+...................................................................................
+.......................
+----------------------------------------------------------------------
+Ran 40 tests in 0.070s
+
+OK
+guillaume@ubuntu:~/AirBnB$
+</pre>
+
+### Non-interactive mode
+
+<pre>
+$ echo "python3 -m unittest discover tests" | bash
+...................................................................................
+...................................................................................
+.......................
+----------------------------------------------------------------------
+Ran 40 tests in 0.070s
+
+OK
+guillaume@ubuntu:~/AirBnB$
+</pre>
+
+# Authors
+Diego Bonora / Lucas Soria
