@@ -22,15 +22,25 @@ Similar to a Shell or Terminal, our Interpreter can recognize a series of comman
 
 **console.py:** Implements a command interpreter that provides an interface to interact with the classes and objects of the program, allowing the user to create, display, update or delete objects using the provided commands.
 
-### Subclasses
-Update, State, City, Amenity, Place and Review.
+## Subclasses
+**User**: The User subclass is a subclass of the BaseModel class, and its used to represent a user in the application. the specific attributes for the subclass are: email, password, first_name and last_name
+
+**State**: The State subclass is a subclass of the BaseModel class, and the specific attribute for the subclass is name
+
+**City**: The City subclass is a subclass of the BaseModel class, and its used to represent a city in the application, the specific attributes for the subclass are: state_id and name
+
+**Amenity**: The Amenity subclass is a subclass of the BaseModel class, and the specific attribute for the subclass is name
+
+**Place**: The Place subclass is a subclass of the BaseModel class, and its used to represent the place you are going to stay, the specific attributes for the subclass are: city_id, user_id, name, description, number_rooms, number_bathrooms, max_guest, price_by_night, latitude, longitude and amenity_ids
+
+**Review**: The Review subclass is a subclass of the BaseModel class, and its used to represent the reviews for the place, and the specific attributes for the subclass are: place_id, user_id and text
 
 ## How to start the command interpreter?
 
 Download our interpreter: ``git clone https://github.com/Diego-Bonora/holbertonschool-AirBnB_clone.git``
 
 To run the console you must use the command ``./console.py``.
-Showing a prompt ``(hbnb)`` donde ingresar los comandos.
+Showing a prompt ``(hbnb)`` where you can insert the commands.
 
 ### Interactive mode
 
@@ -102,7 +112,7 @@ $
 
 
 
-## Ejemplos
+## Examples
 
 ### Create
 <pre>
@@ -132,10 +142,12 @@ e5bc51b6-e31d-4304-b4e2-046e9a337fad
 (hbnb) update User e5bc51b6-e31d-4304-b4e2-046e9a337fad Name "Pepe"
 </pre>
 
-### Testing
+# Unit-Testing
 
 All the files, classes and functions are tested with unitests
+The unittest framework supports test automation, sharing of setup and shutdown code for tests, aggregation of tests into collections, and independence of the tests from the reporting framework.
 
+How to run the Unit-tests:
 ### Interactive mode
 
 <pre>
@@ -147,7 +159,6 @@ $ python3 -m unittest discover tests
 Ran 40 tests in 0.070s
 
 OK
-guillaume@ubuntu:~/AirBnB$
 </pre>
 
 ### Non-interactive mode
@@ -161,8 +172,15 @@ $ echo "python3 -m unittest discover tests" | bash
 Ran 40 tests in 0.070s
 
 OK
-guillaume@ubuntu:~/AirBnB$
 </pre>
+
+The Unittest library provides a wide variety of assertion methods, some of the methods we use are:<br>
+
+\#assertAlmostEqual (a, b): checks that a is equal to b<br>
+\#assertNotEqual (a, b): checks that a is diferent to b<br>
+\#assertIsInstance (a, b): checks that a is an instance of b<br>
+\#assertIn (a, b): checks that a is contained in b<br>
+\#assertTrue (a): checks that a is True<br>
 
 # Authors
 Diego Bonora / Lucas Soria
