@@ -5,8 +5,10 @@ body {
     color: #484848;
     font-size: 14px;
     font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
-<<<<<<< HEAD
 }
-=======
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
 }
->>>>>>> 760a8661048d2cd0c36ebe90d8bb52c0c0d41ed5
+
